@@ -1,18 +1,17 @@
 <?php
-/**
- * Root Index Redirect
- * This file serves as the entry point for your website on hosts like Railway or InfinityFree.
- */
+$request = $_SERVER['REQUEST_URI'];
+$basePath = '/pages/';
 
-// Define the destination for your homepage
-$homepage = 'pages/home.php';
-
-// Check if the file exists before redirecting (optional but good practice)
-if (file_exists($homepage)) {
-    header("Location: $homepage");
-    exit();
-} else {
-    // Fallback if the file is missing
-    echo "Welcome to DoubleU. Please visit the <a href='pages/home.php'>Homepage</a>.";
+switch ($request) {
+    case '/' :
+    case '/home' :
+        require __DIR__ . $basePath . 'home.php';
+        break;
+    case '/profile' :
+        require __DIR__ . $basePath . 'profile.php';
+        break;
+    default:
+        // Handle 404 or redirect back home
+        require __DIR__ . $basePath . 'home.php';
+        break;
 }
-?>
