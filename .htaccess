@@ -1,0 +1,18 @@
+RewriteEngine On
+
+# 1. Redirect root to /home
+RewriteRule ^$ pages/home.php [L]
+
+# 2. Map /home to pages/home.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^home$ pages/home.php [L]
+
+# 3. Map /profile to pages/profile.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^profile$ pages/profile.php [L]
+
+# 4. General rule to remove .php extension for any other pages
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
